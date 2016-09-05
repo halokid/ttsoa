@@ -5,8 +5,13 @@
  * Time: 15:55
  */
 
-//require_once './inc/user.php';
+require_once __DIR__.'/inc/user.php';
 
-//$u = new TTsoa\User();
+echo $argc;
+print_r($argv);
 
-echo 'xx';
+$u = new TTsoa\User();
+$u->ulist();
+$u->$argv[1]();
+
+//echo 'xx';

@@ -44,7 +44,7 @@ func handleClient(conn net.Conn) {
 
   //var resp interface{}
   //resp := exec.Command("php", "./provider/services/php/" + sli[1] + "_impl.php ", sli[2])
-  resp := exec.Command("php", phpPath+"/user_impl.php")
+  resp := exec.Command("php", phpPath+"/user_impl.php", "ulist")
   //resp := exec.Command("php", "E:\\gitxx\\ttsoa\\test\\a.php")
 
   fmt.Println(resp)

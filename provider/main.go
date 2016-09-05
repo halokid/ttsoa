@@ -4,7 +4,7 @@ import (
 )
 
 var (
-  phpPath = "E:\\gitxx\\ttsoa\\provider\\services\\php"
+  phpPath = "/opt/gitxx/ttsoa/provider/services/php"
 )
 
 func main() {
