@@ -1,0 +1,7 @@
+/.idea/*.name
+/.idea/*.xml
+/.idea/copyright/*.xml
+/.idea/libraries/*.xml
+/.idea/*.iml
+/monitor/*.gitignore
+/provider/*.go
