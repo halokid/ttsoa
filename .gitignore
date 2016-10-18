@@ -5,3 +5,4 @@
 /.idea/*.iml
 /monitor/*.gitignore
 /provider/*.go
+/*.iml
