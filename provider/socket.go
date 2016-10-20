@@ -8,6 +8,8 @@ import (
   //"time"
   "fmt"
   //"bufio"
+  //"bufio"
+  "bufio"
 )
 
 
@@ -29,18 +31,21 @@ func provider() {
 
 
 func handleClient(conn net.Conn) {
-  fmt.Println("xxxxx")
+  fmt.Printf("from: %s\n", conn.RemoteAddr())
   defer conn.Close()
 
-  resp := execPool("php", "F:\\GitHub\\ttsoa\\test\\a.php")
+  //resp := execPool("php", "F:\\GitHub\\ttsoa\\test\\a.php")
+  reader := bufio.NewReader(conn)
+  request, err := reader.ReadString('\n')
+  checkError(err)
+  fmt.Println(request)
+
+  resp := execPool("php", "E:\\gitxx\\ttsoa\\test\\a.php")
   conn.Write([]byte(resp))
 
-  /**
-  //长连接读取方式
-  reader := bufio.NewReader(conn)
-  resp, err := reader.ReadString('\n')
-  fmt.Println(resp)
-  checkError(err)
-  conn.Write([]byte("hello"))
-  */
 }
+
+
+
+
+
