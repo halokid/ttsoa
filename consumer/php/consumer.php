@@ -5,16 +5,19 @@
  * Time: 16:49
  */
 
+/**
+ * a sample code use user service base on TTsoa
+ */
+require_once 'services_list.php';
+require_once 'inc/ttConsumer.php';
 
-$client = stream_socket_client("tcp://127.0.0.1:7777", $errno, $errorMessage);
+$userSvs = $serviceList['user'];      //load user services config
+print_r($userSvs);
 
-if ($client === false) {
-  throw new UnexpectedValueException("Failed to connect: $errorMessage");
-}
+$cs = new TTsoa\Consumer($userSvs['hosts']);
+$res = $cs->balanceServ('random')->getService('/user/ulist');
+echo $res;
 
-fwrite($client, "hey\n");
-echo stream_get_contents($client);
-fclose($client);
 
 
 

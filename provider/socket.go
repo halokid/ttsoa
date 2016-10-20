@@ -34,6 +34,7 @@ func handleClient(conn net.Conn) {
   checkError(err)
   fmt.Println(request)
 
+  //request like:  php:/user/ulist
   resp := execPool("php", "E:\\gitxx\\ttsoa\\test\\a.php")
   conn.Write([]byte(resp))
 
