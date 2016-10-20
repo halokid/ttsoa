@@ -3,11 +3,6 @@ package main
 import (
   "net"
   "fmt"
-<<<<<<< HEAD
-=======
-  //"bufio"
-  //"bufio"
->>>>>>> 73f2bbf4225e42332e1d6f063a8322fc51aa1b71
   "bufio"
 )
 
