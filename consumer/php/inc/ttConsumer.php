@@ -37,7 +37,7 @@ class Consumer
       throw new Exception("Failed to connect: $errorMessage");
     }
 
-    fwrite($client, $this->_engine.':'.$service."\n");
+    fwrite($client, $this->_engine.$service."\n");
     $res = stream_get_contents($client);
     fclose($client);
     return $res;
