@@ -5,7 +5,9 @@ import (
   "os/exec")
 
 func main() {
-  cmd := exec.Command("php",  "F:\\GitHub\\ttsoa\\test\\a.php")
+  //cmd := exec.Command("php",  "F:\\GitHub\\ttsoa\\test\\a.php")
+  cmd := exec.Command("php -s E:\\gitxx\\ttsoa\\test\\a.php")
+
   out, err := cmd.CombinedOutput()
   if err != nil {
     fmt.Println(err)

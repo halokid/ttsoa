@@ -4,7 +4,8 @@ import (
   "net"
   "fmt"
   "bufio"
-  "strings"
+  //"strings"
+  "os/exec"
 )
 
 
@@ -38,10 +39,19 @@ func handleClient(conn net.Conn) {
   //request like:  php:/user/ulist
   //resp := execPool("php", "E:\\gitxx\\ttsoa\\test\\a.php")
 
-  sli := strings.Split(request, "/")
-  resp := execPool(sli[0], "E:\\gitxx\\ttsoa\\test\\a.php")
+  //sli := strings.Split(request, "/")
+  //resp := exec.Command("php", "-s", "./services/php/" + sli[1] + "_impl.php " + sli[2] )
 
-  conn.Write([]byte(resp))
+  //var resp interface{}
+  //resp := exec.Command("php", "./provider/services/php/" + sli[1] + "_impl.php ", sli[2])
+  resp := exec.Command("php", phpPath+"/user_impl.php")
+  //resp := exec.Command("php", "E:\\gitxx\\ttsoa\\test\\a.php")
+
+  fmt.Println(resp)
+  out, err := resp.CombinedOutput()
+  checkError(err)
+  fmt.Println(out)
+  conn.Write([]byte(out))
 
 }
 

@@ -18,7 +18,7 @@ $userSvs = $serviceList['user'];      //load user services config
 //print_r($userSvs);
 
 $cs = new TTsoa\Consumer($userSvs['hosts']);
-$res = $cs->balanceServ('random')->getService('/user/ulist');
+$res = $cs->setEngine($userSvs['engine'])->balanceServ('random')->getService('/user/ulist');
 echo $res;
 
 

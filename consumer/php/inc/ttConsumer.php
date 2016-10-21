@@ -14,9 +14,10 @@ use Exception;
 
 class Consumer
 {
-  private $_engine = 'php';     //what language we use in service container
+//  private $_engine = 'php';     //what language we use in service container
   private $_dsns;
   private $_balancegServ;
+  private $_engine;
 
   function __construct($dsns)
   {
@@ -69,6 +70,12 @@ class Consumer
    */
   public function leastConnSche($dsns) {
     return false;
+  }
+
+
+  public function setEngine($engine) {
+    $this->_engine = $engine;
+    return $this;
   }
 
 
