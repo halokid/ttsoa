@@ -10,9 +10,11 @@ $serviceList = array(
                    'hosts' => array('127.0.0.1:7777', '127.0.0.1:7777'),
 
                   'host_items' => array( '127.0.0.1:7777' => array('ulist', 'detail'),
-                                         '127.0.0.1:7777' => array('ulist', 'detail'),
+                                         '192.168.0.203:7777' => array('ulist', 'detail'),
                                    ),
 
                   'all_items' => array('ulist', 'detail', 'reg', 'login', 'logout'),
                   ),
 );
+
+echo json_encode($serviceList);

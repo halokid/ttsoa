@@ -1,0 +1,11 @@
+{
+  "user":{
+    "name":"用户服务",
+    "hosts":["127.0.0.1:7777","127.0.0.1:7777"],
+    "host_items":{
+      "127.0.0.1:7777":["ulist","detail"],
+      "192.168.0.203:7777":["ulist","detail"]
+    },
+    "all_items":["ulist","detail","reg","login","logout"]
+  }
+}
