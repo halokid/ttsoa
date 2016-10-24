@@ -7,11 +7,11 @@
 
 require_once __DIR__.'/inc/user.php';
 
-echo $argc;
-print_r($argv);
+//echo $argc;
+//print_r($argv);
 
 $u = new TTsoa\User();
-$u->ulist();
+//$u->ulist();
 $u->$argv[1]();
 
 //echo 'xx';

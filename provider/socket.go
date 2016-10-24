@@ -6,6 +6,7 @@ import (
   "bufio"
   //"strings"
   "os/exec"
+  "strings"
 )
 
 
@@ -32,20 +33,27 @@ func handleClient(conn net.Conn) {
 
   //resp := execPool("php", "F:\\GitHub\\ttsoa\\test\\a.php")
   reader := bufio.NewReader(conn)
+  //request, err := reader.ReadString('\n')
   request, err := reader.ReadString('\n')
   checkError(err)
   fmt.Println(request)
 
   //request like:  php:/user/ulist
-  //resp := execPool("php", "E:\\gitxx\\ttsoa\\test\\a.php")
+  sli := strings.Split(request, "/")
+  fmt.Println(sli)
+  fmt.Println(sli[2])
 
-  //sli := strings.Split(request, "/")
-  //resp := exec.Command("php", "-s", "./services/php/" + sli[1] + "_impl.php " + sli[2] )
+  act := strings.Replace(sli[2], "\n", "", -1)
+  fmt.Println(act)
 
-  //var resp interface{}
-  //resp := exec.Command("php", "./provider/services/php/" + sli[1] + "_impl.php ", sli[2])
-  resp := exec.Command("php", phpPath+"/user_impl.php", "ulist")
-  //resp := exec.Command("php", "E:\\gitxx\\ttsoa\\test\\a.php")
+  var resp *exec.Cmd
+  if (sli[0] == "php") {
+    //resp := exec.Command("php", phpPath+"/user_impl.php", "ulist")
+    //resp := exec.Command("php", phpPath+"/user_impl.php", string(sli[2]))
+    resp = exec.Command("php", phpPath + "/user_impl.php", act)
+  } else if (sli[0] == "java") {
+    resp = exec.Command("javac", javaPath + "xx.class", act)
+  }
 
   fmt.Println(resp)
   out, err := resp.CombinedOutput()

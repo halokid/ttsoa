@@ -30,8 +30,8 @@ class Consumer
    */
   public function getService($service)
   {
-    print_r($this->_dsns);
-    echo '----------'.$this->_balancegServ.'-----------';
+//    print_r($this->_dsns);
+//    echo '----------'.$this->_balancegServ.'-----------';
     $client = stream_socket_client("tcp://".$this->_balancegServ, $errno, $errorMessage);
 
     if ($client === false) {
@@ -39,6 +39,7 @@ class Consumer
     }
 
     fwrite($client, $this->_engine.$service."\n");
+//    fwrite($client, $this->_engine.$service);
     $res = stream_get_contents($client);
     fclose($client);
     return $res;
@@ -52,7 +53,7 @@ class Consumer
     {
       case 'random':
         $rand = array_rand($this->_dsns);
-        echo '---------------'.$rand.'----------------';
+//        echo '---------------'.$rand.'----------------';
         $this->_balancegServ = $this->_dsns[$rand];
         break;
       case 'leastConn':     //least-ConnectionScheduling
