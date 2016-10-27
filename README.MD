@@ -31,7 +31,7 @@ include some consumer test code base on PHP.
 未完待续......
 
 
-[更多联系邮箱](82049406@qq.com)
+更多联系邮箱82049406@qq.com
 
 
 
