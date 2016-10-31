@@ -7,6 +7,7 @@ import (
   //"strings"
   "os/exec"
   "strings"
+  //"io/ioutil"
 )
 
 
@@ -48,17 +49,23 @@ func handleClient(conn net.Conn) {
 
   var resp *exec.Cmd
   if (sli[0] == "php") {
+    fmt.Println("\n\r------------provider run PHP-------------\n\r")
     //resp := exec.Command("php", phpPath+"/user_impl.php", "ulist")
     //resp := exec.Command("php", phpPath+"/user_impl.php", string(sli[2]))
-    resp = exec.Command("php", phpPath + "/user_impl.php", act)
+    resp = exec.Command("php", phpPath + "/" + string(sli[1]) + "_impl.php", act)
   } else if (sli[0] == "java") {
-    resp = exec.Command("javac", javaPath + "xx.class", act)
+
+    fmt.Println("\n\r------------provider run  JAVA-------------\n\r")
+    fmt.Println(javaPath)
+    resp = exec.Command("java", "-cp", javaPath, string(sli[1]) + "/" + act )
   }
 
-  fmt.Println(resp)
+  //fmt.Println(resp)
+
   out, err := resp.CombinedOutput()
   checkError(err)
-  fmt.Println(out)
+  //fmt.Println(out)
+  fmt.Println(string(out))
   conn.Write([]byte(out))
 
 }

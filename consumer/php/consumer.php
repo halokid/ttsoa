@@ -14,11 +14,18 @@ require_once 'inc/ttConsumer.php';
 $jStr = file_get_contents('./consumer.json');
 $serviceList = json_decode($jStr, true);
 //print_r($serviceList);exit();
-$userSvs = $serviceList['user'];      //load user services config
+//$userSvs = $serviceList['user_php'];      //load user services config, PHP sample
+$userSvs = $serviceList['user_java'];      //load user services config, java sample
 //print_r($userSvs);
 
 $cs = new TTsoa\Consumer($userSvs['hosts']);
-$res = $cs->setEngine($userSvs['engine'])->balanceServ('random')->getService('/user/ulist');
+
+//php provider sample
+//$res = $cs->setEngine($userSvs['engine'])->balanceServ('random')->getService('/user/ulist');
+
+//java provider sample
+$res = $cs->setEngine($userSvs['engine'])->balanceServ('random')->getService('/TTsoa/UserImpl');
+
 echo $res;
 
 
