@@ -10,7 +10,7 @@
     "all_items":["ulist","detail","reg","login","logout"]
   },
   "user_java":{
-    "name":"用户服务",
+    "name":"java TTsoa 用户服务",
     "engine":"java",
     "hosts":["127.0.0.1:7777","192.168.0.203:7777"],
     "host_items":{
