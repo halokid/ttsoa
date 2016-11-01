@@ -33,10 +33,12 @@ Quick Start 快速开始
 ###### 目录说明 ####
 
 
-├─consumer　　　　　消费者程序
-├─monitor　　　　　　服务信息展示中心
-├─provider　　　　　　提供者容器程序
-└─test　　　　　　　 开发过程中的一些测试代码
+- ├─consumer　　　　　消费者程序
+- │  └─php　　　　　　　PHP范例
+- ├─monitor　　　　　　服务信息展示中心
+- ├─provider　　　　　　提供者容器程序
+- │  └─services　　　　　提供者服务程序（多语言支持），包含PHP和java范例
+- └─test　　　　　　　 开发过程中的一些测试代码
 
 
 ###### 提供者程序编写/部署 #######
