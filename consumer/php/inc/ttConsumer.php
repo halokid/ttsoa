@@ -16,7 +16,6 @@ class Consumer
 {
 //  private $_engine = 'php';     //what language we use in service container
   private $_dsns;
-  private $_balancegServ;
   private $_engine;
 
   function __construct($dsns)
@@ -24,46 +23,60 @@ class Consumer
     $this->_dsns = $dsns;   // read from the services list, array
   }
 
+
   /**
-   * @param $service /user/list
+   * @param $balanType balancing type
+   * @param $service services name
+   * @return string
    * @throws Exception
    */
-  public function getService($service)
+  public function runServ($serviceName, $serviceAct, $balanceType = 'random')
   {
-//    print_r($this->_dsns);
+    $enableServHost = $this->checkServ($this->_dsns, $serviceAct);     //fiter the enable serv host
 //    echo '----------'.$this->_balancegServ.'-----------';
-    $client = stream_socket_client("tcp://".$this->_balancegServ, $errno, $errorMessage);
+    $balanceHost = $this->balanceServ($enableServHost, $balanceType);
+    $client = stream_socket_client("tcp://".$balanceHost, $errno, $errorMessage);
 
     if ($client === false) {
       throw new Exception("Failed to connect: $errorMessage");
     }
 
-    fwrite($client, $this->_engine.$service."\n");
-//    fwrite($client, $this->_engine.$service);
+    fwrite($client, $this->_engine.'/'.$serviceName.'/'.$serviceAct."\n");
     $res = stream_get_contents($client);
     fclose($client);
     return $res;
   }
 
   /**
-   * @param $type  type of the balancing request
+   * @param $type  type of the balancing request without check services exsit or not
    */
-  public function balanceServ($type) {
+  public function balanceServ($enableServHost, $type) {
+    $balancegServ = '';
     switch ($type)
     {
       case 'random':
-        $rand = array_rand($this->_dsns);
+        $rand = array_rand($enableServHost);
 //        echo '---------------'.$rand.'----------------';
-        $this->_balancegServ = $this->_dsns[$rand];
+        $balancegServ = $enableServHost[$rand];
         break;
       case 'leastConn':     //least-ConnectionScheduling
-        $this->_balancegServ = $this->leastConnSche($this->_dsns);
+        $balancegServ = $this->leastConnSche($this->_dsns);
         break;
     }
 
-    return $this;
+    return $balancegServ;
   }
 
+
+  private function checkServ($dsns, $serviceAct) {
+    $enableHost = array();
+    foreach ($dsns as $k=>$v) {
+      if (in_array($serviceAct, $v)) {
+        $enableHost[] = $k;
+      }
+    }
+    return $enableHost;
+  }
 
   /**
    * arithmetic of least-Conn

@@ -1,21 +1,24 @@
 {
   "user_php":{
-    "name":"用户服务",
+    "name":"user",
+    "desc":"PHP用户服务",
     "engine":"php",
     "hosts":["127.0.0.1:7777","192.168.0.203:7777"],
     "host_items":{
-      "127.0.0.1:7777":["ulist","detail"],
-      "192.168.0.203:7777":["ulist","detail"]
+      "127.0.0.1:7777":["ulist","detail", "login", "reg"],
+      "192.168.0.203:7777":["ulist","detail", "logout"]
     },
     "all_items":["ulist","detail","reg","login","logout"]
   },
+
   "user_java":{
-    "name":"java TTsoa 用户服务",
+    "name":"TTsoa",
+    "desc":"java TTsoa 用户服务",
     "engine":"java",
     "hosts":["127.0.0.1:7777","192.168.0.203:7777"],
     "host_items":{
-      "127.0.0.1:7777":["ulist","detail"],
-      "192.168.0.203:7777":["ulist","detail"]
+      "127.0.0.1:7777":["ulist","detail", "login", "reg"],
+      "192.168.0.203:7777":["ulist","detail", "logout"]
     },
     "all_items":["ulist","detail","reg","login","logout"]
   }
